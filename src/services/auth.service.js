@@ -21,7 +21,7 @@ export const createUser = async ({ name, password, email, role = 'user' }) => {
       .where(eq(users.email, email))
       .limit(1);
     if (existingUser.length > 0)
-      throw new Error('User with this email already exists');
+      throw new Error('User with this email already exists!');
 
     const password_hash = await hashPassword(password);
 
@@ -35,7 +35,7 @@ export const createUser = async ({ name, password, email, role = 'user' }) => {
         role: users.role,
         created_at: users.created_at,
       });
-    logger.info(`User ${newUser.email} created successfully`);
+    logger.info(`User ${newUser.email} created successfully!`);
     return newUser;
   } catch (error) {
     logger.error(`Error creating the user: ${error}`);
